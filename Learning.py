@@ -55,14 +55,14 @@ for i in range(25):
             weight[i][j]=a
 #print (weight)
 #the input sample
-input=[0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0]
+input=[0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1]
 #list of iteration 
-y=np.zeros((5 , 25))
+y=np.zeros((3 , 25))
 
 #testing sample function
 def test(x):
     y[0]=x
-    for z in range(4):
+    for z in range(2):
         
         index =0
         for ind,i in enumerate(y[z]):
@@ -78,3 +78,9 @@ def test(x):
             index = index + 1
     print(y)
 test(input)
+while True :
+    if(all(y[1][i] == y[2][i] for i in range(25))):
+        print("ok")
+        break
+    else:
+        test(y[2])
