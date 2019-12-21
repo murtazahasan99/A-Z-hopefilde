@@ -27,8 +27,13 @@ data = [[0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
         [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0],
         [1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1]
        ]
+# data=[
+#         [0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1],
+#         [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+#         [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1]
+# ]
 converted_data = data
-z = []
+
 #here in the loop we converte all zeroes in data to -1
 for index1 ,i in enumerate(converted_data):
     for index2 ,j in enumerate(i) :
@@ -48,4 +53,28 @@ for i in range(25):
             for n in range(len(converted_data)):
                 a= a + converted_data[n][i] * converted_data[n][j]
             weight[i][j]=a
-print (weight)
+#print (weight)
+#the input sample
+input=[0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0]
+#list of iteration 
+y=np.zeros((5 , 25))
+
+#testing sample function
+def test(x):
+    y[0]=x
+    for z in range(4):
+        
+        index =0
+        for ind,i in enumerate(y[z]):
+        
+            counter=0
+            for j in range(25):
+                counter=counter+(y[z][j]*weight[index][j])
+            w=i+counter
+            if w<0:
+                y[z+1][ind]=0
+            else:
+                y[z+1][ind]=1
+            index = index + 1
+    print(y)
+test(input)
